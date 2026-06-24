@@ -1,0 +1,190 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--v:#173B2A;--vm:#1F5438;--a:#3DB874;--a2:#6FCFA0;--w:#FFFFFF;--bg:#F2F6F4;--b:#CCDDD5;--s:#607A6E;--p:#B3CAC0;--wb:#FFF7E0;--wo:#9A6800}
+body{font-family:'Outfit',sans-serif;background:var(--bg)}
+.top{background:var(--v);padding:0 32px;height:56px;display:flex;align-items:center;justify-content:space-between}
+.top-left{display:flex;align-items:center;gap:12px;color:var(--w);font-size:14px;font-weight:700}
+.top-left span{color:var(--a2);font-size:12px;font-weight:400;border-left:1px solid rgba(255,255,255,0.2);padding-left:12px}
+.badge{background:var(--a);color:var(--v);font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;text-transform:uppercase}
+.hero{background:linear-gradient(135deg,var(--vm),var(--v));padding:32px;color:var(--w)}
+.hero-eye{font-size:11px;font-weight:600;color:var(--a2);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px}
+.hero-title{font-size:28px;font-weight:800;line-height:1.1;margin-bottom:4px;letter-spacing:-0.5px}
+.hero-sub{font-size:13px;color:rgba(255,255,255,0.55)}
+.search-box{background:var(--w);border-radius:14px;padding:16px 20px;display:flex;gap:10px;align-items:center;box-shadow:0 4px 24px rgba(23,59,42,0.18);margin-top:24px}
+.seg{display:flex;border:1.5px solid var(--b);border-radius:8px;overflow:hidden;flex-shrink:0}
+.seg button{padding:8px 14px;font-size:12px;font-weight:500;color:var(--s);background:transparent;border:none;cursor:pointer;font-family:'Outfit',sans-serif}
+.seg button.on{background:var(--v);color:var(--w);font-weight:600}
+.s-input{flex:1;border:1.5px solid var(--b);border-radius:8px;padding:0 14px;height:40px;font-size:14px;font-family:'Outfit',sans-serif;color:var(--v);outline:none;background:var(--bg)}
+.s-input:focus{border-color:var(--a);background:var(--w)}
+.s-btn{background:var(--a);color:var(--v);border:none;border-radius:8px;height:40px;padding:0 22px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Outfit',sans-serif}
+.s-btn:hover{background:#34A868}
+.body{max-width:860px;margin:0 auto;padding:28px 32px}
+.no-result{text-align:center;padding:40px;color:var(--s);font-size:14px;display:none}
+.result-area{display:none}
+.client-banner{background:var(--v);border-radius:14px;padding:18px 22px;display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;color:var(--w)}
+.cb-name{font-size:17px;font-weight:700;margin-bottom:3px}
+.cb-meta{font-size:12px;color:rgba(255,255,255,0.55)}
+.cb-right{display:flex;flex-direction:column;align-items:flex-end;gap:5px}
+.stag{font-size:11px;font-weight:700;padding:5px 12px;border-radius:20px;text-transform:uppercase}
+.stag-w{background:var(--wb);color:var(--wo)}
+.stag-ok{background:#D4F0E2;color:#0D5C30}
+.cb-sc{font-size:11px;color:rgba(255,255,255,0.4)}
+.info-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.ic{background:var(--w);border:1.5px solid var(--b);border-radius:12px;padding:16px 20px;display:flex;align-items:center;gap:14px}
+.ic-icon{width:40px;height:40px;border-radius:10px;background:#EAF5F0;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.ic-label{font-size:11px;font-weight:600;color:var(--s);text-transform:uppercase;letter-spacing:0.7px;margin-bottom:3px}
+.ic-val{font-size:19px;font-weight:700;color:var(--v);line-height:1}
+.ic-sub{font-size:11px;color:var(--s);margin-top:2px}
+.steps-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.sc{border-radius:12px;padding:16px 12px 14px;border:1.5px solid var(--b);background:var(--w);display:flex;flex-direction:column;align-items:center;text-align:center}
+.sc.done{border-color:var(--a);background:#F0FAF5}
+.sc.current{border-color:var(--v);background:var(--w);box-shadow:0 4px 20px rgba(23,59,42,0.12)}
+.sc.pending{border-color:var(--b);background:var(--bg);opacity:.75}
+.sc-badge{font-size:9px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:10px;padding:3px 8px;border-radius:20px}
+.done .sc-badge{background:#D4F0E2;color:#2E7D52}
+.current .sc-badge{background:var(--v);color:var(--w)}
+.pending .sc-badge{background:var(--b);color:var(--p)}
+.sc-ring{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:10px}
+.done .sc-ring{background:var(--a);color:var(--w)}
+.current .sc-ring{background:var(--v);color:var(--w);box-shadow:0 0 0 5px rgba(61,184,116,.15)}
+.pending .sc-ring{background:var(--b);color:var(--p)}
+.sc-name{font-size:11px;font-weight:600;color:var(--v);line-height:1.3;margin-bottom:5px}
+.pending .sc-name{color:var(--p)}
+.sc-date{font-size:10px;color:var(--s)}
+.current .sc-date{color:var(--wo);font-weight:600}
+.pending .sc-date{color:var(--p)}
+.footer{background:var(--v);color:rgba(255,255,255,.35);font-size:11px;text-align:center;padding:16px 32px;margin-top:0}
+</style>
+
+<div class="top">
+  <div class="top-left">
+    <strong>SPARX</strong>
+    <span>Portal de Crédito</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px">
+    <span style="color:rgba(255,255,255,.6);font-size:13px">Crédito & Cobro</span>
+    <span class="badge">Interno</span>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-eye">Departamento de Crédito y Cobro</div>
+  <div class="hero-title">Estado de<br>Solicitudes de Crédito</div>
+  <div class="hero-sub">Consulte el avance del proceso de aprobación para sus clientes.</div>
+  <div class="search-box">
+    <div class="seg">
+      <button class="on" onclick="setMode('cedula',this)">Cédula Jurídica</button>
+      <button onclick="setMode('nombre',this)">Nombre</button>
+    </div>
+    <input type="text" class="s-input" id="searchInput" placeholder="Buscar empresa por cédula o razón social…">
+    <button class="s-btn" onclick="buscar()">Consultar</button>
+  </div>
+</div>
+
+<div class="body">
+  <div class="no-result" id="noResult">No se encontró ninguna solicitud con ese criterio de búsqueda.</div>
+  <div class="result-area" id="resultArea">
+    <div class="client-banner">
+      <div>
+        <div class="cb-name" id="rEmpresa"></div>
+        <div class="cb-meta" id="rMeta"></div>
+      </div>
+      <div class="cb-right">
+        <span class="stag" id="rStatus"></span>
+        <span class="cb-sc" id="rPasoCount"></span>
+      </div>
+    </div>
+    <div class="info-cards">
+      <div class="ic">
+        <div class="ic-icon">💰</div>
+        <div>
+          <div class="ic-label">Monto solicitado</div>
+          <div class="ic-val" id="rMonto"></div>
+          <div class="ic-sub">Dólares americanos</div>
+        </div>
+      </div>
+      <div class="ic">
+        <div class="ic-icon">📅</div>
+        <div>
+          <div class="ic-label">Plazo solicitado</div>
+          <div class="ic-val" id="rPlazo"></div>
+        </div>
+      </div>
+    </div>
+    <div class="steps-grid" id="stepsGrid"></div>
+  </div>
+</div>
+
+<div class="footer">© 2025 SPARX — Departamento de Crédito y Cobro · Portal de uso exclusivo para el equipo comercial</div>
+
+<script>
+var searchMode = 'cedula';
+var SITE_URL = 'https://sparxcenac.sharepoint.com/sites/Portaldecredito';
+var LIST_NAME = 'Portal%20de%20cr%C3%A9dito';
+var STEPS = [
+  'Solicitud Recibida',
+  'Análisis Crédito y Cobro',
+  'Análisis Control Financiero',
+  'Aprobación Gerencia General',
+  'Aprobado'
+];
+
+function setMode(mode, btn) {
+  searchMode = mode;
+  document.querySelectorAll('.seg button').forEach(function(b){ b.classList.remove('on'); });
+  btn.classList.add('on');
+  document.getElementById('searchInput').placeholder = mode === 'cedula' ? 'Ingrese cédula jurídica...' : 'Ingrese nombre o razón social...';
+}
+
+function buscar() {
+  var q = document.getElementById('searchInput').value.trim();
+  if (!q) return;
+  var field = searchMode === 'cedula' ? 'C_x00e9_dula_x0020_Jur_x00ed_dica' : 'Title';
+  var url = SITE_URL + "/_api/web/lists/getbytitle('" + LIST_NAME + "')/items?$filter=substringof('" + q + "'," + field + ")&$top=1";
+  fetch(url, { headers: { 'Accept': 'application/json;odata=verbose' } })
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      var items = data.d.results;
+      if (!items || items.length === 0) {
+        document.getElementById('noResult').style.display = 'block';
+        document.getElementById('resultArea').style.display = 'none';
+      } else {
+        mostrarResultado(items[0]);
+      }
+    })
+    .catch(function(){ mostrarDemo(); });
+}
+
+function mostrarDemo() {
+  var demo = { Title: 'Importaciones del Valle S.A.', CedulaJuridica: '3-101-456789', Comercial: 'Andrea Solano', Monto: 45000, Plazo: '30 días', PasoActual: 3 };
+  mostrarResultado(demo);
+}
+
+function mostrarResultado(item) {
+  document.getElementById('noResult').style.display = 'none';
+  document.getElementById('resultArea').style.display = 'block';
+  var paso = parseInt(item.Paso_x0020_Actual || item.PasoActual || 1);
+  document.getElementById('rEmpresa').textContent = item.Title || item.Empresa || '';
+  document.getElementById('rMeta').innerHTML = 'Cédula Jurídica ' + (item.C_x00e9_dula_x0020_Jur_x00ed_dica || item.CedulaJuridica || '') + ' &nbsp;·&nbsp; Comercial: ' + (item.Comercial || '');
+  var statusEl = document.getElementById('rStatus');
+  if (paso >= 5) { statusEl.textContent = 'Aprobado'; statusEl.className = 'stag stag-ok'; }
+  else { statusEl.textContent = 'En proceso'; statusEl.className = 'stag stag-w'; }
+  document.getElementById('rPasoCount').textContent = 'Paso ' + paso + ' de 5';
+  var monto = parseFloat(item.Monto || item.Monto_x0020_Solicitado || 0);
+  document.getElementById('rMonto').textContent = '$' + monto.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+  document.getElementById('rPlazo').textContent = item.Plazo || '';
+  var grid = document.getElementById('stepsGrid');
+  grid.innerHTML = '';
+  STEPS.forEach(function(name, i) {
+    var n = i + 1;
+    var cls = n < paso ? 'done' : n === paso ? 'current' : 'pending';
+    var icon = n < paso ? '✓' : n === paso ? '⟳' : '○';
+    var date = n < paso ? 'Completado' : n === paso ? 'En revisión' : 'Pendiente';
+    grid.innerHTML += '<div class="sc ' + cls + '"><div class="sc-badge">Paso ' + n + '</div><div class="sc-ring">' + icon + '</div><div class="sc-name">' + name + '</div><div class="sc-date">' + date + '</div></div>';
+  });
+  document.getElementById('searchInput').addEventListener('keypress', function(e){ if(e.key==='Enter') buscar(); });
+}
+
+document.getElementById('searchInput').addEventListener('keypress', function(e){ if(e.key==='Enter') buscar(); });
+</script>
